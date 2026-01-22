@@ -9,10 +9,16 @@ export const RequestAirdrop = () => {
     const connection = useConnection();
 
     const request = async  () => {
-        let inp = document.getElementById("amount") as HTMLInputElement;
-        let amount = Number(inp.value);
-        await connection.connection.requestAirdrop(wallet.publicKey!, amount * LAMPORTS_PER_SOL);
-        alert(`Sol send for ${amount} in public key ${wallet.publicKey}`);
+        try {
+            let inp = document.getElementById("amount") as HTMLInputElement;
+            let amount = Number(inp.value);
+            const response = await connection.connection.requestAirdrop(wallet.publicKey!, amount * LAMPORTS_PER_SOL);
+            console.log(response);
+            alert(`Sol send for ${amount} in public key ${wallet.publicKey}`);
+        } catch (error) {
+            console.warn(error);
+        }
+        
     }   
     
     const getBalance  = async ()=>{
