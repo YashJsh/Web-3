@@ -7,18 +7,6 @@ import { CreateTokenAccount } from './component/createTokenAccount';
 import { MintToken } from './component/mintToken';
 
 function App() {
-  const [name, setName] = useState<string | null>(null);
-  const [symbol, setSymbol] = useState<string | null>(null);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [supply, setSupply] = useState<string | null>(null);
-
-  async function createToken() {
-    if (!name || !symbol || !imageUrl || !supply) {
-      alert("All fields are required");
-      return;
-    };
-  }
-
   return (
     <div className='h-screen w-screen'>
       <Navbar />
