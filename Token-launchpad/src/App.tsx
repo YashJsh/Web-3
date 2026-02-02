@@ -5,6 +5,7 @@ import { BalanceDisplay } from './component/balanceForm';
 import { CreateMint } from './component/createMint';
 import { CreateTokenAccount } from './component/createTokenAccount';
 import { MintToken } from './component/mintToken';
+import { AddData } from './component/addMetaData';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <CreateMint/>
           <CreateTokenAccount/>
           <MintToken/>
+          <AddData/>
       </div>
     </div>
   )
