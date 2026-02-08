@@ -1,5 +1,6 @@
 mod transfer_token;
 mod get_balance;
+mod create_token;
 use std::io::{self, Write};
 
 use solana_sdk::native_token::LAMPORTS_PER_SOL;
