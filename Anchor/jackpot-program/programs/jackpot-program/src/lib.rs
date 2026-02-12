@@ -125,7 +125,7 @@ pub struct Initialize<'info>{
     #[account(
         init,
         payer = signer,
-        space = 8, // no data, just discriminator
+        space = 8, 
         seeds = [b"treasury"],
         bump
     )]
@@ -175,9 +175,11 @@ pub struct Settle<'info>{
     )]
     pub treasury : Account<'info, Treasury>,
 
+    /// CHECK: This is safe because we verify it matches master_key.highest_bidder
     #[account(mut)]
     pub highest_bidder: UncheckedAccount<'info>,
 
+    /// CHECK: This is safe because we verify it matches auctioneer_address
     #[account(mut)]
     pub auctioneer: UncheckedAccount<'info>,
 
