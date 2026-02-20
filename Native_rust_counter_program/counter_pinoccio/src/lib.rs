@@ -27,26 +27,24 @@ pub fn process_instruction(
 
     let mut counter_account = &accounts[0];
 
-    let owner = unsafe {
-        counter_account.owner()
-    };
+    let owner = unsafe { counter_account.owner() };
     if owner != program_id {
         return Err(ProgramError::IncorrectProgramId);
     };
 
-    match instr{
+    match instr {
         CounterProgram::Initialize => {
-            let count = Counter{
-                count : 0
-            };
+            let count = Counter { count: 0 };
+            for byte in account_data.iter_mut() {
+                *byte = 0;
+            }
+            let mut account_data = counter_account.try_borrow_mut_data()?;
 
-        },
-        CounterProgram::Increment => {
-
+            // Serialize directly into the account data buffer
+            counter.serialize(&mut &mut account_data[..])?;
         }
+        CounterProgram::Increment => {}
     }
-
-  
 
     Ok(())
 }
