@@ -37,7 +37,9 @@ export const MintToken: FC = () => {
 
         const amount = Number(formData.get("amount") as string);
         const rawAmount = amount * Math.pow(10, decimals);
-
+        console.log("Minting the tokens");
+        console.log("From address : ", tokenMint);
+        console.log("Two Address : ", tokenAccount);
         const transaction = new Transaction().add(
             createMintToInstruction(
                 new PublicKey(tokenMint),
@@ -50,10 +52,10 @@ export const MintToken: FC = () => {
         transaction.recentBlockhash = (
             await connection.getLatestBlockhash()
         ).blockhash;
-
+        console.log("Signing transaction");
         const signature = await sendTransaction(transaction, connection);
         setTxSig(signature);
-
+        console.log("Transaction Signature", signature);
         const balanceResponse = await connection.getTokenAccountBalance(tokenAccountPubKey);
         setBalance(balanceResponse.value.uiAmount || 0);
     };
