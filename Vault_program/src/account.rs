@@ -1,15 +1,13 @@
-use std::fmt::Error;
-
 use pinocchio::{AccountView, Address, error::ProgramError};
 use pinocchio_pubkey::derive_address;
 
-pub struct InitializeAccounts<'a> {
+pub struct FilterAccounts<'a> {
     pub signer : &'a AccountView,
     pub vault : &'a AccountView,
     pub system_program : &'a AccountView
 }
 
-impl<'a>  InitializeAccounts<'a>{
+impl<'a>  FilterAccounts<'a>{
     pub fn try_from(accounts: &'a [AccountView], bump : u8,  program_id: &Address) -> Result<Self, ProgramError> {
         let [signer, vault, system_program] = accounts else{
             return Err(ProgramError::InvalidInstructionData)
