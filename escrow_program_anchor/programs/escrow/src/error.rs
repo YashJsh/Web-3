@@ -12,5 +12,8 @@ pub enum ErrorCode{
     InvalidTokenMint,
 
     #[msg("Amount must be greater than zero")]
-    InvalidAmount
+    InvalidAmount,
+
+    #[msg("Token amount is greater than required for swap")]
+    InsufficientTokenBalance
 }
