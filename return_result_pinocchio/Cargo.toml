@@ -1,0 +1,14 @@
+cargo-features = ["edition2024"]
+
+[package]
+name = "return_result_pinocchio"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+pinocchio = { version = "0.10.2", features = ["cpi"] }
+pinocchio-system = "0.5.0"
+solana-program-log = "1.1.0"
